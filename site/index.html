@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paradise Donut Company | Store Menu</title>
+<meta name="description" content="Today's donut menu at your local Paradise Donut Company store." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍩</text></svg>" />
+<style>
+  :root{
+    --cream:#fff8f1; --ink:#2b1a14; --muted:#7a6159; --pink:#e8457a; --pink-dark:#c22f62;
+    --card:#ffffff; --line:#f0e2d8; --gold:#f2a33a; --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.45}
+  a{color:inherit}
+  .topbar{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:8px 12px;letter-spacing:.02em}
+  header.hero{background:radial-gradient(1200px 400px at 10% -20%,#ffd6e4 0,transparent 60%),radial-gradient(900px 400px at 100% 0,#ffe7c2 0,transparent 55%);padding:28px 20px 34px;border-bottom:1px solid var(--line)}
+  .wrap{max-width:1160px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;letter-spacing:-.01em}
+  .brand-mark{width:40px;height:40px;border-radius:50%;background:conic-gradient(var(--pink) 0 70%,#ffb3cb 70% 100%);position:relative;box-shadow:0 2px 6px rgba(194,47,98,.35)}
+  .brand-mark::after{content:"";position:absolute;inset:13px;border-radius:50%;background:var(--cream)}
+  .hero-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:26px}
+  h1{font-size:clamp(30px,4.5vw,46px);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+  .meta{color:var(--muted);font-size:15px;display:flex;gap:16px;flex-wrap:wrap}
+  .meta span{display:inline-flex;align-items:center;gap:6px}
+  .picker{display:flex;flex-direction:column;gap:6px;min-width:240px}
+  .picker label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  select{appearance:none;font:inherit;font-weight:600;padding:12px 44px 12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a6159' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 16px center;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  select:focus-visible{outline:3px solid #ffc2d6;outline-offset:1px}
+  main{padding:28px 20px 60px}
+  .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;color:var(--muted);font-size:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s ease,box-shadow .15s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(43,26,20,.10)}
+  .img{position:relative;aspect-ratio:4/3;background:#f6ece5}
+  .img img{width:100%;height:100%;object-fit:cover;display:block}
+  .tag{position:absolute;top:12px;left:12px;background:var(--pink);color:#fff;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+  .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .name{font-weight:750;font-size:18px;margin:0}
+  .price{font-weight:800;color:var(--pink-dark);white-space:nowrap}
+  .desc{color:var(--muted);font-size:14px;margin:0;flex:1}
+  .foot{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+  .stars{color:var(--gold);letter-spacing:1px}
+  .skeleton .img,.skeleton .bar{background:linear-gradient(90deg,#f3e7df 0,#fbf3ee 50%,#f3e7df 100%);background-size:200% 100%;animation:shimmer 1.2s infinite}
+  .bar{height:14px;border-radius:6px}
+  @keyframes shimmer{to{background-position:-200% 0}}
+  .notice{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;text-align:center;color:var(--muted)}
+  .notice strong{display:block;color:var(--ink);font-size:18px;margin-bottom:6px}
+  footer{border-top:1px solid var(--line);padding:22px 20px;color:var(--muted);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .pill{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 9px;margin-left:4px;font-size:12px}
+</style>
+</head>
+<body>
+  <div class="topbar">Every donut, every store, fried fresh daily</div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="brand"><div class="brand-mark" aria-hidden="true"></div>Paradise Donut Company</div>
+      <div class="hero-grid">
+        <div>
+          <h1 id="storeTitle">Loading menu…</h1>
+          <div class="meta">
+            <span id="storeCity"></span>
+            <span id="storeHours"></span>
+          </div>
+          <p id="storeTagline" class="meta" style="margin:8px 0 0"></p>
+        </div>
+        <div class="picker">
+          <label for="storeSelect">Choose a store</label>
+          <select id="storeSelect" aria-label="Choose a store"></select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="toolbar"><span id="count"></span><span id="source"></span></div>
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© Paradise Donut Company · IS 531 serverless prototype</span>
+      <span>S3<span class="pill">CloudFront</span><span class="pill">API Gateway</span><span class="pill">Lambda</span><span class="pill">DynamoDB</span></span>
+    </div>
+  </footer>
+
+<script src="config.js"></script>
+<script>
+(() => {
+  const API = (window.PDC_CONFIG && window.PDC_CONFIG.apiUrl || "").replace(/\/$/, "");
+  const $ = (id) => document.getElementById(id);
+  const DEFAULT_STORE = "provo";
+  let storesById = {};
+
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const stars = (r) => { const n = Math.round(Number(r) || 0); return "★".repeat(n) + "☆".repeat(5 - n); };
+  const money = (amount, currency, locale) => {
+    try { return new Intl.NumberFormat(locale || "en-US", { style: "currency", currency: currency || "USD",
+            maximumFractionDigits: currency === "USD" ? 2 : 0 }).format(amount); }
+    catch { return amount; }
+  };
+
+  function skeleton(n = 6) {
+    $("grid").innerHTML = Array.from({length:n}, () =>
+      `<div class="card skeleton"><div class="img"></div><div class="body"><div class="bar" style="width:60%"></div><div class="bar"></div><div class="bar" style="width:40%"></div></div></div>`).join("");
+  }
+
+  function notice(title, msg) {
+    $("grid").innerHTML = `<div class="notice" style="grid-column:1/-1"><strong>${esc(title)}</strong>${esc(msg)}</div>`;
+  }
+
+  async function getJSON(path) {
+    const t0 = performance.now();
+    const res = await fetch(API + path);
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw Object.assign(new Error(body.error || res.statusText), { status: res.status });
+    return { body, ms: Math.round(performance.now() - t0) };
+  }
+
+  async function loadStores(current) {
+    const { body } = await getJSON("/stores");
+    const stores = (body.stores || []).sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+    storesById = Object.fromEntries(stores.map(s => [s.storeId, s]));
+    $("storeSelect").innerHTML = stores.map(s =>
+      `<option value="${esc(s.storeId)}"${s.storeId === current ? " selected" : ""}>${esc(s.name)} · ${esc(s.city)}</option>`).join("");
+  }
+
+  async function loadMenu(storeId) {
+    skeleton();
+    $("count").textContent = ""; $("source").textContent = "";
+    try {
+      const { body, ms } = await getJSON(`/items?store=${encodeURIComponent(storeId)}`);
+      const s = body.store || storesById[storeId] || { name: storeId };
+      document.title = `${s.name} Menu | Paradise Donut Company`;
+      $("storeTitle").textContent = `${s.name} menu`;
+      $("storeCity").textContent = s.city ? `📍 ${s.city}` : "";
+      $("storeHours").textContent = s.hours ? `🕒 ${s.hours}` : "";
+      $("storeTagline").textContent = s.tagline || "";
+      $("count").textContent = `${body.count} donuts available today`;
+      $("source").textContent = `Live from DynamoDB · ${ms} ms`;
+      $("grid").innerHTML = body.items.map(i => `
+        <article class="card">
+          <div class="img">
+            <img src="${esc(i.imageUrl)}" alt="${esc(i.name)} donut" loading="lazy" />
+            ${i.tag ? `<span class="tag">${esc(i.tag)}</span>` : ""}
+          </div>
+          <div class="body">
+            <div class="row"><h2 class="name">${esc(i.name)}</h2><span class="price">${esc(money(i.price, i.currency, s.locale))}</span></div>
+            <p class="desc">${esc(i.description)}</p>
+            <div class="foot"><span><span class="stars" aria-label="${esc(i.rating)} out of 5">${stars(i.rating)}</span> ${esc(i.rating)}</span><span>${esc(i.calories)} cal</span></div>
+          </div>
+        </article>`).join("");
+    } catch (e) {
+      $("storeTitle").textContent = "Store not found";
+      notice(e.status === 404 ? "We couldn't find that store." : "The menu didn't load.",
+             e.status === 404 ? "Pick a store from the list above." : "Please refresh in a moment.");
+      console.error(e);
+    }
+  }
+
+  function setStore(storeId, push) {
+    const url = new URL(location.href);
+    url.searchParams.set("store", storeId);
+    push ? history.pushState({ storeId }, "", url) : history.replaceState({ storeId }, "", url);
+    if ($("storeSelect").value !== storeId) $("storeSelect").value = storeId;
+    loadMenu(storeId);
+  }
+
+  $("storeSelect").addEventListener("change", e => setStore(e.target.value, true));
+  window.addEventListener("popstate", () => setStore(new URLSearchParams(location.search).get("store") || DEFAULT_STORE, false));
+
+  const initial = (new URLSearchParams(location.search).get("store") || DEFAULT_STORE).toLowerCase();
+  skeleton();
+  if (!API) { notice("Configuration missing", "config.js has no API URL. Run scripts/deploy.sh."); return; }
+  loadStores(initial).catch(console.error).finally(() => setStore(initial, false));
+})();
+</script>
+</body>
+</html>

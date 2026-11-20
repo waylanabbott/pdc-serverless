@@ -1,0 +1,54 @@
+{
+  "stores": [
+    {"storeId": "provo", "name": "Provo", "city": "Provo, Utah", "currency": "USD", "locale": "en-US",
+     "tagline": "Fresh off the fryer since 5 a.m. on University Ave.", "hours": "5:00 AM - 10:00 PM", "sortOrder": 1},
+    {"storeId": "kyoto", "name": "Kyoto", "city": "Kyoto, Japan", "currency": "JPY", "locale": "ja-JP",
+     "tagline": "Classic American donuts a short walk from Nishiki Market.", "hours": "7:00 AM - 9:00 PM", "sortOrder": 2},
+    {"storeId": "buenos-aires", "name": "Buenos Aires", "city": "Buenos Aires, Argentina", "currency": "ARS", "locale": "es-AR",
+     "tagline": "Donuts and cafecito in Palermo, open late like the city.", "hours": "8:00 AM - 1:00 AM", "sortOrder": 3}
+  ],
+  "catalog": {
+    "glazed":              {"name": "Glazed",              "image": "donut01.jpg", "calories": 190, "description": "Our original yeast-raised ring with a thin sugar glaze."},
+    "chocolate-frosted":   {"name": "Chocolate Frosted",   "image": "donut02.jpg", "calories": 260, "description": "Glazed ring dipped in rich chocolate icing."},
+    "strawberry-sprinkle": {"name": "Strawberry Sprinkle", "image": "donut03.jpg", "calories": 270, "description": "Pink strawberry icing and rainbow sprinkles."},
+    "boston-cream":        {"name": "Boston Cream",        "image": "donut04.jpg", "calories": 300, "description": "Vanilla custard filling under a chocolate top."},
+    "jelly-filled":        {"name": "Jelly Filled",        "image": "donut05.jpg", "calories": 290, "description": "Sugar-dusted shell with raspberry jelly inside."},
+    "maple-bar":           {"name": "Maple Bar",           "image": "donut06.jpg", "calories": 310, "description": "Long john with real maple icing."},
+    "old-fashioned":       {"name": "Old Fashioned",       "image": "donut07.jpg", "calories": 280, "description": "Crackly sour-cream cake donut, lightly glazed."},
+    "powdered-sugar":      {"name": "Powdered Sugar",      "image": "donut08.jpg", "calories": 250, "description": "Soft cake donut rolled in powdered sugar."},
+    "cinnamon-sugar":      {"name": "Cinnamon Sugar",      "image": "donut09.jpg", "calories": 240, "description": "Warm cake donut tossed in cinnamon sugar."},
+    "apple-fritter":       {"name": "Apple Fritter",       "image": "donut10.jpg", "calories": 420, "description": "Hand-folded with apple chunks and cinnamon, then glazed."},
+    "french-cruller":      {"name": "French Cruller",      "image": "donut11.jpg", "calories": 220, "description": "Light, eggy choux-pastry twist with honey glaze."},
+    "blueberry-cake":      {"name": "Blueberry Cake",      "image": "donut12.jpg", "calories": 290, "description": "Blueberry cake donut with a crisp glaze."}
+  },
+  "menus": {
+    "provo": [
+      {"itemId": "glazed", "price": 1.49, "rating": 4.8, "tag": "Best seller"},
+      {"itemId": "maple-bar", "price": 2.29, "rating": 4.7},
+      {"itemId": "boston-cream", "price": 2.19, "rating": 4.6},
+      {"itemId": "apple-fritter", "price": 3.49, "rating": 4.9, "tag": "Local favorite"},
+      {"itemId": "chocolate-frosted", "price": 1.79, "rating": 4.5},
+      {"itemId": "old-fashioned", "price": 1.69, "rating": 4.4},
+      {"itemId": "jelly-filled", "price": 1.99, "rating": 4.3},
+      {"itemId": "blueberry-cake", "price": 1.89, "rating": 4.5}
+    ],
+    "kyoto": [
+      {"itemId": "glazed", "price": 220, "rating": 4.7},
+      {"itemId": "french-cruller", "price": 260, "rating": 4.9, "tag": "Best seller"},
+      {"itemId": "strawberry-sprinkle", "price": 280, "rating": 4.6, "tag": "Seasonal"},
+      {"itemId": "powdered-sugar", "price": 230, "rating": 4.4},
+      {"itemId": "boston-cream", "price": 300, "rating": 4.6},
+      {"itemId": "cinnamon-sugar", "price": 240, "rating": 4.5},
+      {"itemId": "old-fashioned", "price": 250, "rating": 4.3}
+    ],
+    "buenos-aires": [
+      {"itemId": "glazed", "price": 1800, "rating": 4.6},
+      {"itemId": "boston-cream", "price": 2600, "rating": 4.8, "tag": "Best seller"},
+      {"itemId": "jelly-filled", "price": 2400, "rating": 4.5},
+      {"itemId": "cinnamon-sugar", "price": 2100, "rating": 4.4},
+      {"itemId": "chocolate-frosted", "price": 2200, "rating": 4.7},
+      {"itemId": "apple-fritter", "price": 3200, "rating": 4.6},
+      {"itemId": "powdered-sugar", "price": 1900, "rating": 4.3}
+    ]
+  }
+}

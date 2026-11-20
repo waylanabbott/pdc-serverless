@@ -1,0 +1,6 @@
+.aws-sam/
+.seed/
+__pycache__/
+.DS_Store
+screenshots/
+submission/

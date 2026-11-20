@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  One-time setup: lets GitHub Actions in ONE repo deploy the pdc-serverless stack
+  using short-lived OIDC credentials (no long-lived AWS keys stored in GitHub).
+Parameters:
+  GitHubRepo:
+    Type: String
+    Description: owner/repo, e.g. waylanabbott/pdc-serverless
+  CreateOidcProvider:
+    Type: String
+    AllowedValues: ["true", "false"]
+    Default: "true"
+    Description: Set false if your account already has the token.actions.githubusercontent.com provider (e.g. from the SAM workshop).
+Conditions:
+  MakeProvider: !Equals [!Ref CreateOidcProvider, "true"]
+Resources:
+  GitHubOidcProvider:
+    Type: AWS::IAM::OIDCProvider
+    Condition: MakeProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList: [sts.amazonaws.com]
+      ThumbprintList: [6938fd4d98bab03faadb97b34396831e3780aea1]
+  DeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: pdc-serverless-github-deploy
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/token.actions.githubusercontent.com"
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub "repo:${GitHubRepo}:ref:refs/heads/main"
+      # Prototype: broad rights so SAM can create every resource type in template.yaml.
+      # Production: scope to CloudFormation + the specific services/resources.
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+Outputs:
+  DeployRoleArn:
+    Value: !GetAtt DeployRole.Arn
