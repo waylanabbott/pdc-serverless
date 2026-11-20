@@ -36,10 +36,20 @@ Resources:
               StringEquals:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com
               StringLike:
-                # Jobs that use a GitHub "environment" present sub = repo:<r>:environment:<env>, not the branch ref.
+                # Jobs that use a GitHub "environment" present sub = ...:environment:<env>, not the branch ref.
+                # Newer GitHub tokens also append immutable IDs: repo:<owner>@<ownerId>/<repo>@<repoId>:...
+                # (found via the failed AssumeRoleWithWebIdentity event in CloudTrail), so match both formats.
                 token.actions.githubusercontent.com:sub:
                   - !Sub "repo:${GitHubRepo}:ref:refs/heads/main"
                   - !Sub "repo:${GitHubRepo}:environment:production"
+                  - !Sub
+                    - "repo:${Owner}@*/${Name}@*:ref:refs/heads/main"
+                    - Owner: !Select [0, !Split ["/", !Ref GitHubRepo]]
+                      Name: !Select [1, !Split ["/", !Ref GitHubRepo]]
+                  - !Sub
+                    - "repo:${Owner}@*/${Name}@*:environment:production"
+                    - Owner: !Select [0, !Split ["/", !Ref GitHubRepo]]
+                      Name: !Select [1, !Split ["/", !Ref GitHubRepo]]
       # Prototype: broad rights so SAM can create every resource type in template.yaml.
       # Production: scope to CloudFormation + the specific services/resources.
       ManagedPolicyArns:
